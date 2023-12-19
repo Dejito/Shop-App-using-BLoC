@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -39,10 +40,28 @@ class _WelcomeState extends State<Welcome> {
                     context,
                     'get started',
                     "This is how I win",
-                    "And through desire, a man having separateth himself intermingleth with all knowlege!"
+                    "And through desire, a man having separateth himself intermingleth with all knowlege!",
                   )
                 ],
-              )
+              ),
+              Positioned (
+                bottom: 50.h,
+                child: DotsIndicator(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  dotsCount: 3,
+                  decorator: DotsDecorator(
+                    color: Colors.grey,
+                    activeColor: Colors.blue,
+                    size: const Size.square(8),
+                    activeSize: const Size(10.0, 8.0),
+                    activeShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)
+                    )
+
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -104,7 +123,7 @@ Widget _page(int index, BuildContext context, String buttonName, String title,
             ),
           ),
         ),
-      )
+      ),
     ],
   );
 }
