@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_app_using_bloc/welcome_bloc.dart';
+import 'package:shop_app_using_bloc/pages/welcome/welcome_bloc.dart';
 import 'package:shop_app_using_bloc/welcome_screen.dart';
 
 void main() {
