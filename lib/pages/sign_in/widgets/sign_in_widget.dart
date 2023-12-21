@@ -37,10 +37,24 @@ Widget buildThirdPartyLogin(BuildContext context) {
 Widget reusableIcon(String icon, Function() onClick) {
   return GestureDetector(
     onTap: onClick,
-    child: SizedBox(
+    child: Container(
+      margin: const EdgeInsets.only(top: 40, bottom: 20),
       height: 40.h,
       width: 40.w,
       child: Image.asset("assets/icons/$icon.png"),
+    ),
+  );
+}
+
+Widget reusableText() {
+  return Container(
+    child: Row(
+      children: [
+        Container(
+          height: , width: ,
+          child: Image.asset("assets/icons/user.png"),
+        )
+      ],
     ),
   );
 }
