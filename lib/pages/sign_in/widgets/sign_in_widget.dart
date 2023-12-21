@@ -25,14 +25,12 @@ Widget buildThirdPartyLogin(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     mainAxisSize: MainAxisSize.max,
     children: [
-      reusableIcon("google", (){}),
-      reusableIcon("apple", (){}),
-      reusableIcon("facebook", (){}),
-
+      reusableIcon("google", () {}),
+      reusableIcon("apple", () {}),
+      reusableIcon("facebook", () {}),
     ],
   );
 }
-
 
 Widget reusableIcon(String icon, Function() onClick) {
   return GestureDetector(
@@ -46,13 +44,60 @@ Widget reusableIcon(String icon, Function() onClick) {
   );
 }
 
-Widget reusableText() {
+Widget reusableText(String text) {
+  return SizedBox(
+    child: Text(
+      text,
+      style: TextStyle(color: Colors.grey.withOpacity(.9)),
+    ),
+  );
+}
+
+Widget buildTextField({required String hintText, required String icon, required String keyboardType}) {
   return Container(
+    margin: EdgeInsets.only(top: 5.h),
+    width: 325.w,
+    height: 50.h,
+    decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.all(Radius.circular(15.w)),
+        border: Border.all(color: Colors.black)),
     child: Row(
       children: [
         Container(
-          height: , width: ,
-          child: Image.asset("assets/icons/user.png"),
+          height: 16.h,
+          width: 16.w,
+          margin: EdgeInsets.only(left: 15.w),
+          child: Image.asset("assets/icons/$icon.png"),
+        ),
+        SizedBox(
+          width: 270.w, height: 50.w,
+          child:  TextField(
+            keyboardType: TextInputType.multiline,
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle:  TextStyle(
+                fontFamily: "Avenir",
+                  color: Colors.grey.withOpacity(.9),
+                fontWeight: FontWeight.normal
+              ),
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.transparent
+                ),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide.none
+              ),
+              enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide.none
+              ),
+              disabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide.none
+              )
+            ),
+            obscureText: keyboardType == "password" ? true : false,
+          ),
         )
       ],
     ),

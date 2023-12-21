@@ -70,6 +70,13 @@ flutter:
     - assets/images/
     - assets/icons/
 
+  fonts:
+    - family: Avenir
+      fonts:
+        - asset: assets/fonts/Avenir-Book.ttf
+#        - asset: assets/fonts/Schyler-Italic.ttf
+#          style: italic
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
