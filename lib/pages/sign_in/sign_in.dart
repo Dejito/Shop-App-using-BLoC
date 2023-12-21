@@ -45,7 +45,11 @@ class _SignInState extends State<SignIn> {
                         hintText: "Enter your email password",
                         keyboardType: "password",
                         icon: 'lock',
-                      )
+                      ),
+                      forgotPassword(),
+                      buildLoginAndRegButton("Login", 'login'),
+                      buildLoginAndRegButton("Register", 'reg')
+
                     ],
                   ),
                 ),
