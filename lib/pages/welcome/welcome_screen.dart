@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
 import 'package:shop_app_using_bloc/pages/welcome/welcome_bloc.dart';
 
 class Welcome extends StatefulWidget {
@@ -33,26 +34,29 @@ class _WelcomeState extends State<Welcome> {
                   },
                   children: [
                     _page(
-                        1,
-                        context,
-                        'next',
-                        "First it was fragrance",
-                        "And through desire, a man having separateth himself intermingleth with all knowlege!",
-                        "assets/images/reading.png",),
+                      1,
+                      context,
+                      'next',
+                      "First it was fragrance",
+                      "And through desire, a man having separateth himself intermingleth with all knowlege!",
+                      "assets/images/reading.png",
+                    ),
                     _page(
-                        2,
-                        context,
-                        'next',
-                        "Connect with everyone",
-                        "Then it turned to fire, my worship is my weapon, this is how I win my battles",
-                        "assets/images/boy.png",),
+                      2,
+                      context,
+                      'next',
+                      "Connect with everyone",
+                      "Then it turned to fire, my worship is my weapon, this is how I win my battles",
+                      "assets/images/boy.png",
+                    ),
                     _page(
-                        3,
-                        context,
-                        'get started',
-                        "This is how I win",
-                        "And through desire, a man having separateth himself intermingleth with all knowlege!",
-                        "assets/images/man.png",)
+                      3,
+                      context,
+                      'get started',
+                      "This is how I win",
+                      "And through desire, a man having separateth himself intermingleth with all knowlege!",
+                      "assets/images/man.png",
+                    )
                   ],
                 ),
                 Positioned(
@@ -81,8 +85,14 @@ class _WelcomeState extends State<Welcome> {
     );
   }
 
-  Widget _page(int index, BuildContext context, String buttonName, String title,
-      String subtitle, String imageUrl, ) {
+  Widget _page(
+    int index,
+    BuildContext context,
+    String buttonName,
+    String title,
+    String subtitle,
+    String imageUrl,
+  ) {
     return Column(
       children: [
         Column(
@@ -119,13 +129,15 @@ class _WelcomeState extends State<Welcome> {
           ),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             if (index < 3) {
-              _pageController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+              _pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn);
             } else {
-
+              Navigator.of(context).pushReplacementNamed(SignIn.route);
             }
-          } ,
+          },
           child: Container(
             margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
             width: 325.w,
@@ -154,7 +166,4 @@ class _WelcomeState extends State<Welcome> {
       ],
     );
   }
-
 }
-
-
