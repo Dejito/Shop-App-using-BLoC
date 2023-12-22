@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../common/values/colors.dart';
+
 AppBar buildAppBar = AppBar(
   bottom: PreferredSize(
     preferredSize: const Size.fromHeight(1.0),
@@ -21,14 +23,17 @@ AppBar buildAppBar = AppBar(
 );
 
 Widget buildThirdPartyLogin(BuildContext context) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    mainAxisSize: MainAxisSize.max,
-    children: [
-      reusableIcon("google", () {}),
-      reusableIcon("apple", () {}),
-      reusableIcon("facebook", () {}),
-    ],
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 15.w),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        reusableIcon("google", () {}),
+        reusableIcon("apple", () {}),
+        reusableIcon("facebook", () {}),
+      ],
+    ),
   );
 }
 
@@ -61,7 +66,7 @@ Widget buildTextField({required String hintText, required String icon, required 
     decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.all(Radius.circular(15.w)),
-        border: Border.all(color: Colors.black)),
+        border: Border.all(color: AppColors.primaryFourElementText)),
     child: Row(
       children: [
         Container(
@@ -127,8 +132,9 @@ Widget buildLoginAndRegButton(String buttonName, String buttonType) {
       width: 350.w, height: 50.h,
       margin: EdgeInsets.only( top: buttonType == "login" ? 40.h : 20.h),
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: buttonType == 'login' ? AppColors.primaryElement : AppColors.primaryBackground,
         borderRadius: BorderRadius.circular(15.w),
+        border: Border.all(color: buttonType == 'login' ? Colors.transparent : AppColors.primaryFourElementText,),
         boxShadow: [
           BoxShadow(
             spreadRadius: 1,
@@ -141,8 +147,8 @@ Widget buildLoginAndRegButton(String buttonName, String buttonType) {
       child: Center(
         child: Text(
           buttonName,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: buttonType == 'login' ? Colors.white : Colors.black,
             fontSize: 16
           ),
         ),
