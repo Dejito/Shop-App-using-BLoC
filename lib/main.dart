@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_app_using_bloc/welcome_screen.dart';
-
-import 'count_bloc/counter_bloc.dart';
+import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
+import 'package:shop_app_using_bloc/pages/welcome/welcome_bloc.dart';
+import 'package:shop_app_using_bloc/pages/welcome/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,15 +16,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CounterBloc(),
+      create: (context) => WelcomeBloc(),
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
-          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          title: 'Shop App',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            appBarTheme: const AppBarTheme(
+              elevation: 0,
+              backgroundColor: Colors.white
+            ),
             useMaterial3: true,
           ),
           home: const Welcome(),
+          routes: {
+            SignIn.route: (context) => const SignIn()
+          },
         ),
       ),
     );
