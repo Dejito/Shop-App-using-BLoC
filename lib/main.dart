@@ -1,13 +1,22 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
 import 'package:shop_app_using_bloc/pages/welcome/welcome_bloc.dart';
 import 'package:shop_app_using_bloc/pages/welcome/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    print("made it>>>>>>");
+    runApp(const MyApp());
+  } catch (e) {
+    print("ngmi>>>>>>");
+    // runApp(const MyApp());
+  }
+
 }
 
 class MyApp extends StatelessWidget {
@@ -23,16 +32,12 @@ class MyApp extends StatelessWidget {
           title: 'Shop App',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            appBarTheme: const AppBarTheme(
-              elevation: 0,
-              backgroundColor: Colors.white
-            ),
+            appBarTheme:
+                const AppBarTheme(elevation: 0, backgroundColor: Colors.white),
             useMaterial3: true,
           ),
           home: const Welcome(),
-          routes: {
-            SignIn.route: (context) => const SignIn()
-          },
+          routes: {SignIn.route: (context) => const SignIn(),},
         ),
       ),
     );

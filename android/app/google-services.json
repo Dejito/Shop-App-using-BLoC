@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "171952853343",
-    "firebase_url": "https://marketplace-f3f0d-default-rtdb.firebaseio.com",
-    "project_id": "marketplace-f3f0d",
-    "storage_bucket": "marketplace-f3f0d.appspot.com"
+    "project_number": "58523797120",
+    "project_id": "shopappwithbloc",
+    "storage_bucket": "shopappwithbloc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:171952853343:android:e431fc24e3145024f4e6ea",
+        "mobilesdk_app_id": "1:58523797120:android:5a2b834e3b5d9a01764865",
         "android_client_info": {
           "package_name": "com.example.shop_app_using_bloc"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBWry5qpgquHCYT-kox4rSrK2tAozCule0"
+          "current_key": "AIzaSyBHYlgxWVe9JBHN3IdBrdkryzEzd1GBgrE"
         }
       ],
       "services": {
