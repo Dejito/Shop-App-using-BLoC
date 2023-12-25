@@ -125,8 +125,12 @@ Widget forgotPassword() {
   );
 }
 
-Widget buildLoginAndRegButton(String buttonName, String buttonType) {
+Widget buildLoginAndRegButton(
+  String buttonName,
+  String buttonType, Function() onTap,
+  ) {
   return GestureDetector(
+    onTap: onTap,
     child: Container(
       width: 350.w,
       height: 50.h,
