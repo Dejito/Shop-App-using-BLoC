@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
-import 'package:shop_app_using_bloc/pages/welcome/welcome_bloc.dart';
+import 'package:shop_app_using_bloc/pages/welcome/bloc/welcome_bloc.dart';
 import 'package:shop_app_using_bloc/pages/welcome/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -10,13 +12,16 @@ void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
-    print("made it>>>>>>");
+    if (kDebugMode) {
+      print("made it>>>>>>");
+    }
     runApp(const MyApp());
   } catch (e) {
-    print("ngmi>>>>>>");
+    if (kDebugMode) {
+      print("ngmi>>>>>>");
+    }
     // runApp(const MyApp());
   }
-
 }
 
 class MyApp extends StatelessWidget {
@@ -24,8 +29,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => WelcomeBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(lazy: false, create: (context) => WelcomeBloc()),
+        BlocProvider(create: (context) => SignInBloc()),
+      ],
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -37,7 +45,9 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: const Welcome(),
-          routes: {SignIn.route: (context) => const SignIn(),},
+          routes: {
+            SignIn.route: (context) => const SignIn(),
+          },
         ),
       ),
     );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
-import 'package:shop_app_using_bloc/pages/welcome/welcome_bloc.dart';
+import 'package:shop_app_using_bloc/pages/welcome/bloc/welcome_bloc.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -60,7 +60,7 @@ class _WelcomeState extends State<Welcome> {
                   ],
                 ),
                 Positioned(
-                  bottom: 50.h,
+                  bottom: 50.h, left: 130.h,
                   child: DotsIndicator(
                     position: state.page,
                     mainAxisSize: MainAxisSize.max,
