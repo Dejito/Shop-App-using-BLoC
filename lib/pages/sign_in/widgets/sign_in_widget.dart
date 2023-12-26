@@ -127,10 +127,10 @@ Widget forgotPassword() {
 
 Widget buildLoginAndRegButton(
   String buttonName,
-  String buttonType, Function() onTap,
+  String buttonType, Function onTap,
   ) {
   return GestureDetector(
-    onTap: onTap,
+    onTap: () {onTap();},
     child: Container(
       width: 350.w,
       height: 50.h,
