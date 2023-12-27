@@ -21,63 +21,65 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
       body: BlocBuilder<WelcomeBloc, WelcomeState>(
         builder: (context, state) {
-          return Container(
-            margin: EdgeInsets.only(top: 34.h),
-            width: 375.w,
-            child: Stack(
-              children: [
-                PageView(
-                  controller: _pageController,
-                  onPageChanged: (int index) {
-                    state.page = index;
-                    blocProvider.add(WelcomeEvent());
-                  },
-                  children: [
-                    _page(
-                      1,
-                      context,
-                      'next',
-                      "First it was fragrance",
-                      "And through desire, a man having separateth himself intermingleth with all knowlege!",
-                      "assets/images/reading.png",
-                    ),
-                    _page(
-                      2,
-                      context,
-                      'next',
-                      "Connect with everyone",
-                      "Then it turned to fire, my worship is my weapon, this is how I win my battles",
-                      "assets/images/boy.png",
-                    ),
-                    _page(
-                      3,
-                      context,
-                      'get started',
-                      "This is how I win",
-                      "And through desire, a man having separateth himself intermingleth with all knowlege!",
-                      "assets/images/man.png",
-                    )
-                  ],
-                ),
-                Positioned(
-                  bottom: 50.h, left: 130.h,
-                  child: DotsIndicator(
-                    position: state.page,
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    dotsCount: 3,
-                    decorator: DotsDecorator(
-                      color: Colors.grey,
-                      activeColor: Colors.blue,
-                      size: const Size.square(8),
-                      activeSize: const Size(18.0, 8.0),
-                      activeShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
+          return SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.only(top: 34.h),
+              width: 375.w,
+              child: Stack(
+                children: [
+                  PageView(
+                    controller: _pageController,
+                    onPageChanged: (int index) {
+                      state.page = index;
+                      blocProvider.add(WelcomeEvent());
+                    },
+                    children: [
+                      _page(
+                        1,
+                        context,
+                        'next',
+                        "First it was fragrance",
+                        "And through desire, a man having separateth himself intermingleth with all knowlege!",
+                        "assets/images/reading.png",
+                      ),
+                      _page(
+                        2,
+                        context,
+                        'next',
+                        "Connect with everyone",
+                        "Then it turned to fire, my worship is my weapon, this is how I win my battles",
+                        "assets/images/boy.png",
+                      ),
+                      _page(
+                        3,
+                        context,
+                        'get started',
+                        "This is how I win",
+                        "And through desire, a man having separateth himself intermingleth with all knowlege!",
+                        "assets/images/man.png",
+                      )
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 50.h, left: 130.h,
+                    child: DotsIndicator(
+                      position: state.page,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      dotsCount: 3,
+                      decorator: DotsDecorator(
+                        color: Colors.grey,
+                        activeColor: Colors.blue,
+                        size: const Size.square(8),
+                        activeSize: const Size(18.0, 8.0),
+                        activeShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
