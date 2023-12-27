@@ -1,13 +1,27 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/pages/bloc_providers.dart';
+import 'package:shop_app_using_bloc/pages/register/register.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
-import 'package:shop_app_using_bloc/pages/welcome/welcome_bloc.dart';
 import 'package:shop_app_using_bloc/pages/welcome/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    if (kDebugMode) {
+      print("made it>>>>>>");
+    }
+    runApp(const MyApp());
+  } catch (e) {
+    if (kDebugMode) {
+      print("firebase ngmi>>>>>>");
+    }
+    // runApp(const MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -15,23 +29,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => WelcomeBloc(),
+    return MultiBlocProvider(
+      providers: AppBlocProviders.allBlocProviders,
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Shop App',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            appBarTheme: const AppBarTheme(
-              elevation: 0,
-              backgroundColor: Colors.white
-            ),
+            appBarTheme:
+                const AppBarTheme(elevation: 0, backgroundColor: Colors.white),
             useMaterial3: true,
           ),
           home: const Welcome(),
           routes: {
-            SignIn.route: (context) => const SignIn()
+            SignIn.route: (context) => const SignIn(),
+            Register.route: (context) => const Register(),
           },
         ),
       ),
