@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/pages/register/register.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in_controller.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/widgets/sign_in_widget.dart';
 
@@ -61,12 +62,10 @@ class _SignInState extends State<SignIn> {
                                       )),
                           forgotPassword(),
                           buildLoginAndRegButton("Login", 'login', () {
-                            // SignInController(context).handleSignIn('email');
-                          }
-                           ),
-                          buildLoginAndRegButton("Register", 'reg', () async {
-                           await SignInController(context).handleSignIn('email');
-                            // print("completed");
+                            SignInController(context).handleSignIn('email');
+                          }),
+                          buildLoginAndRegButton("Register", 'reg', () {
+                            Navigator.pushNamed(context, Register.route);
                           })
                         ],
                       ),
