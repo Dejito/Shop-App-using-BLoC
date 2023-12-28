@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/pages/application/application_page.dart';
 import 'package:shop_app_using_bloc/pages/bloc_providers.dart';
 import 'package:shop_app_using_bloc/pages/register/register.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
                 const AppBarTheme(elevation: 0, backgroundColor: Colors.white),
             useMaterial3: true,
           ),
-          home: const Welcome(),
+          home: const ApplicationPage(),
+          // Welcome(),
           routes: {
             SignIn.route: (context) => const SignIn(),
             Register.route: (context) => const Register(),
