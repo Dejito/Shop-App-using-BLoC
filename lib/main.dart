@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: AppBlocProviders.allBlocProviders,
+      providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -53,56 +53,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyHomePage extends StatelessWidget {
-//   const MyHomePage({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final counterBloc = BlocProvider.of<CounterBloc>(context);
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         title: const Text('blocker'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Center(
-//           child: BlocBuilder<CounterBloc, CounterState>(
-//             builder: (context, state) {
-//               return Column(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: <Widget>[
-//                   const Text(
-//                     'You have pushed the button this many times:',
-//                   ),
-//                   Text(
-//                     '${counterBloc.state.counter}',
-//                     style: Theme.of(context).textTheme.headlineMedium,
-//                   ),
-//                   Row(
-//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                     children: [
-//                       OutlinedButton(
-//                         onPressed: (){
-//                           counterBloc.add(AddCounter());
-//                         },
-//                         child: const Icon(Icons.add),
-//                       ),
-//                       OutlinedButton(
-//                           onPressed: (){
-//                             counterBloc.add(RemoveCounter());
-//                           },
-//                         child: const Icon(Icons.remove),
-//                       ),
-//                     ],
-//                   )
-//                 ],
-//               );
-//             },
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

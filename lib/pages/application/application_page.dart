@@ -4,6 +4,8 @@ import 'package:shop_app_using_bloc/common/values/colors.dart';
 import 'package:shop_app_using_bloc/pages/application/application_widgets.dart';
 
 class ApplicationPage extends StatefulWidget {
+  static const register = 'register';
+
   const ApplicationPage({super.key});
 
   @override

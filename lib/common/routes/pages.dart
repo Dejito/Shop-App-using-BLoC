@@ -18,22 +18,22 @@ class AppPages {
      PageEntity(
        route: AppRoutes.initial,
        page: const Welcome(),
-       bloc: BlocProvider(create: (BuildContext context) => WelcomeBloc(),),
+       bloc: BlocProvider(create: ( context) => WelcomeBloc(),),
      ),
      PageEntity(
        route: AppRoutes.signIn,
        page: const SignIn(),
-       bloc: BlocProvider(create: (BuildContext context) => SignInBloc(),),
+       bloc: BlocProvider(create: (context) => SignInBloc(),),
      ),
      PageEntity(
        route: AppRoutes.register,
        page: const Register(),
-       bloc: BlocProvider(create: (BuildContext context) => RegisterBloc(),),
+       bloc: BlocProvider(create: (context) => RegisterBloc(),),
      ),
      PageEntity(
        route: AppRoutes.application,
        page: const ApplicationPage(),
-       // bloc: BlocProvider(create: (BuildContext context) => Applicat(),),
+       bloc: BlocProvider(create: (context) => RegisterBloc(),),
      ),
    ];
  }
@@ -43,18 +43,19 @@ class AppPages {
    for (var bloc in routes()) {
      blocProviders.add(bloc.bloc);
    }
+   print("bloc provs are $blocProviders");
    return blocProviders;
  }
 
  static MaterialPageRoute generateRouteSettings (RouteSettings settings ) {
    if (settings.name != null) {
-     print('setting 1 is ${settings.name}');
+     // print('setting 1 is ${settings.name}');
      var result = routes().where((element) => element.route == settings.name);
      if (result.isNotEmpty) {
        return MaterialPageRoute(builder: (_) => result.first.page, settings: settings);
      }
    }
-   print('setting 2 is ${settings.name}');
+   // print('setting 2 is ${settings.name}');
    return MaterialPageRoute(builder: (_) => const Welcome(), settings: settings);
  }
 
@@ -67,5 +68,5 @@ class PageEntity {
   Widget page;
   dynamic bloc;
 
-  PageEntity({required this.route, required this.page, this.bloc});
+  PageEntity({required this.route, required this.page, required this.bloc});
 }
