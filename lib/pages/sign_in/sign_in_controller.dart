@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_using_bloc/common/widget/flutter_toast.dart';
+import 'package:shop_app_using_bloc/pages/application/application_page.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/bloc/sign_in_bloc.dart';
 
 class SignInController {
@@ -18,28 +19,27 @@ class SignInController {
         final password = state.password;
 
         if (email.isEmpty) {
-          //
-          // print("email empty");
           toastInfo(message: "email is empty");
         }
         if (password!.isEmpty) {
-          //
           toastInfo(message: "password is empty");
         }
         try {
-          print("implementing firebase auth signup");
+          // print("implementing firebase auth signup");
           final credentials = await FirebaseAuth.instance
               .signInWithEmailAndPassword(email: email, password: password);
           print("cred $credentials");
           if (credentials.user == null) {
-
             toastInfo(message: "user does not exist");
           }
           if (!credentials.user!.emailVerified) {
             toastInfo(message: "not verified");
           }
           var user = credentials.user;
-          if (user != null) {}
+          if (user != null) {
+            print('got to nav >>>>>');
+            Navigator.pushReplacementNamed(context, ApplicationPage.route);
+          }
 
         } on FirebaseAuthException catch (e) {
           print("firebase exception");

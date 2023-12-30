@@ -5,6 +5,7 @@ import 'package:shop_app_using_bloc/common/routes/names.dart';
 import 'package:shop_app_using_bloc/common/routes/pages.dart';
 import 'package:shop_app_using_bloc/common/routes/pages.dart';
 import 'package:shop_app_using_bloc/pages/application/application_page.dart';
+import 'package:shop_app_using_bloc/pages/application/bloc/app_bloc.dart';
 import 'package:shop_app_using_bloc/pages/register/bloc/register_bloc.dart';
 import 'package:shop_app_using_bloc/pages/register/register.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/bloc/sign_in_bloc.dart';
@@ -33,7 +34,7 @@ class AppPages {
      PageEntity(
        route: AppRoutes.application,
        page: const ApplicationPage(),
-       bloc: BlocProvider(create: (context) => RegisterBloc(),),
+       bloc: BlocProvider(create: (context) => AppBloc(),),
      ),
    ];
  }

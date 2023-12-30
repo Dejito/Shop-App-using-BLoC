@@ -4,16 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/common/routes/pages.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:shop_app_using_bloc/pages/application/application_page.dart';
-import 'package:shop_app_using_bloc/pages/bloc_providers.dart';
-import 'package:shop_app_using_bloc/pages/welcome/welcome_screen.dart';
+
 
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     if (kDebugMode) {
-      print("made it>>>>>>");
+      print("firebase plugged >>>>>>");
     }
     runApp(const MyApp());
   } catch (e) {
