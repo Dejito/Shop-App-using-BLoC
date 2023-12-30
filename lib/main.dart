@@ -4,16 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/common/routes/pages.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:shop_app_using_bloc/global.dart';
 
 void main() async {
   try {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-    if (kDebugMode) {
-      print("firebase plugged >>>>>>");
-    }
+    await Global().init();
     runApp(const MyApp());
+    if (kDebugMode) {
+      print("firebase init'd >>>>>>");
+    }
   } catch (e) {
     if (kDebugMode) {
       print("firebase ngmi>>>>>>");

@@ -2,8 +2,15 @@ part of 'app_bloc.dart';
 
 
 class AppEvent {
-  final int index;
-
-  const AppEvent(this.index);
+  const AppEvent();
 
 }
+
+class TriggerAppEvent extends AppEvent {
+  final int index;
+
+  const TriggerAppEvent(this.index): super();
+
+}
+
+

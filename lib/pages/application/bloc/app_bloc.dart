@@ -6,15 +6,15 @@ import 'package:meta/meta.dart';
 part 'app_event.dart';
 part 'app_state.dart';
 
-class AppBloc extends Bloc<AppEvent, AppState> {
+class AppBloc extends Bloc<TriggerAppEvent, AppState> {
   AppBloc() : super(const AppState()) {
-    on<AppEvent>(_updateIndex);
+    on<TriggerAppEvent>(_updateIndex);
     // on<AppEvent>((event, emit) {
     //   emit((AppState(index: event.index)));
     // });
   }
 
-  void _updateIndex(AppEvent event, Emitter<AppState> emit) {
+  void _updateIndex(TriggerAppEvent event, Emitter<AppState> emit) {
     emit(AppState(index: event.index));
   }
 
