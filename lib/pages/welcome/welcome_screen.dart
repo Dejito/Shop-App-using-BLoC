@@ -2,6 +2,9 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/common/service/storage_service.dart';
+import 'package:shop_app_using_bloc/common/values/constant.dart';
+import 'package:shop_app_using_bloc/global.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
 import 'package:shop_app_using_bloc/pages/welcome/bloc/welcome_bloc.dart';
 
@@ -132,12 +135,15 @@ class _WelcomeState extends State<Welcome> {
           ),
         ),
         GestureDetector(
-          onTap: () {
+          onTap: () async {
             if (index < 3) {
               _pageController.animateToPage(index,
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeIn);
             } else {
+
+             await Global.storageService.setBool(AppConstant.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
+              // print("storage open value is >>> ${StorageService().getDeviceFirstOpen()}");
               Navigator.of(context).pushReplacementNamed(SignIn.route);
             }
           },

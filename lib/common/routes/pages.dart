@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_using_bloc/common/routes/names.dart';
 import 'package:shop_app_using_bloc/common/routes/pages.dart';
 import 'package:shop_app_using_bloc/common/routes/pages.dart';
+import 'package:shop_app_using_bloc/global.dart';
 import 'package:shop_app_using_bloc/pages/application/application_page.dart';
 import 'package:shop_app_using_bloc/pages/application/bloc/app_bloc.dart';
 import 'package:shop_app_using_bloc/pages/register/bloc/register_bloc.dart';
@@ -44,19 +45,21 @@ class AppPages {
    for (var bloc in routes()) {
      blocProviders.add(bloc.bloc);
    }
-   print("bloc provs are $blocProviders");
    return blocProviders;
  }
 
  static MaterialPageRoute generateRouteSettings (RouteSettings settings ) {
    if (settings.name != null) {
-     // print('setting 1 is ${settings.name}');
      var result = routes().where((element) => element.route == settings.name);
      if (result.isNotEmpty) {
+       bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
+       print("device first open $deviceFirstOpen");
+       if (result.first.route == AppRoutes.initial && !deviceFirstOpen) {
+         return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
+       }
        return MaterialPageRoute(builder: (_) => result.first.page, settings: settings);
      }
    }
-   // print('setting 2 is ${settings.name}');
    return MaterialPageRoute(builder: (_) => const Welcome(), settings: settings);
  }
 

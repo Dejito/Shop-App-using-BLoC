@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/common/routes/pages.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:shop_app_using_bloc/global.dart';
 
-void main() async {
+Future<void> main() async {
   try {
-    await Global().init();
-    runApp(const MyApp());
+    await Global.init();
     if (kDebugMode) {
       print("firebase init'd >>>>>>");
     }
+    runApp(const MyApp());
   } catch (e) {
     if (kDebugMode) {
-      print("firebase ngmi>>>>>>");
+
+      print("firebase ngmi>>>>>>$e");
     }
     // runApp(const MyApp());
   }
