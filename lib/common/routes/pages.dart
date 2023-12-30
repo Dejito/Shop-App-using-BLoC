@@ -53,7 +53,10 @@ class AppPages {
      var result = routes().where((element) => element.route == settings.name);
      if (result.isNotEmpty) {
        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
-       print("device first open $deviceFirstOpen");
+       String? isLoggedIn = Global.storageService.getIsLoggedIn();
+       if (isLoggedIn != null) {
+         return MaterialPageRoute(builder: (_) => const ApplicationPage());
+       }
        if (result.first.route == AppRoutes.initial && !deviceFirstOpen) {
          return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
        }

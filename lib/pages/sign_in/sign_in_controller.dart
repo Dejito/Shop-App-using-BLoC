@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_using_bloc/common/values/constant.dart';
 import 'package:shop_app_using_bloc/common/widget/flutter_toast.dart';
 import 'package:shop_app_using_bloc/pages/application/application_page.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/bloc/sign_in_bloc.dart';
+
+import '../../global.dart';
 
 class SignInController {
 
@@ -37,7 +40,7 @@ class SignInController {
           }
           var user = credentials.user;
           if (user != null) {
-            print('got to nav >>>>>');
+            Global.storageService.setString(AppConstant.STORAGE_USER_TOKEN_KEY, '1234567');
             Navigator.pushReplacementNamed(context, ApplicationPage.route);
           }
 

@@ -10,6 +10,6 @@ class Global {
    WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
     storageService = await StorageService().init();
-    print('storage service is $storageService');
+    // print('storage service is $storageService');
   }
 }

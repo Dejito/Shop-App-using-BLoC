@@ -7,7 +7,7 @@ class StorageService {
 
   Future<StorageService> init() async {
     _prefs = await SharedPreferences.getInstance();
-    print("$_prefs is ----");
+    // print("$_prefs is ----");
     return this;
   }
 
@@ -17,9 +17,16 @@ class StorageService {
     print('just to set bool');
   }
 
+  Future<void> setString (String key, String value) async {
+    await _prefs.setString(key, value);
+  }
+
   bool getDeviceFirstOpen() {
-    print("${_prefs.getBool(AppConstant.STORAGE_DEVICE_OPEN_FIRST_TIME)}");
     return _prefs.getBool(AppConstant.STORAGE_DEVICE_OPEN_FIRST_TIME) ?? false;
+  }
+
+  String? getIsLoggedIn() {
+    return _prefs.getString(AppConstant.STORAGE_USER_TOKEN_KEY);
   }
 
 }
