@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'register_event.dart';
-
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
@@ -24,7 +21,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   void _emailEvent(EmailEvent event, Emitter<RegisterState> emit) {
-    print("email is ${event.email}");
+    // print("email is ${event.email}");
     emit(state.copyWith(email: event.email));
   }
 

@@ -2,6 +2,9 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/common/service/storage_service.dart';
+import 'package:shop_app_using_bloc/common/values/constant.dart';
+import 'package:shop_app_using_bloc/global.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/sign_in.dart';
 import 'package:shop_app_using_bloc/pages/welcome/bloc/welcome_bloc.dart';
 
@@ -13,6 +16,8 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  static const routeName = '/';
+
   final PageController _pageController = PageController(initialPage: 0);
 
   @override
@@ -21,65 +26,64 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
       body: BlocBuilder<WelcomeBloc, WelcomeState>(
         builder: (context, state) {
-          return SingleChildScrollView(
-            child: Container(
-              margin: EdgeInsets.only(top: 34.h),
-              width: 375.w,
-              child: Stack(
-                children: [
-                  PageView(
-                    controller: _pageController,
-                    onPageChanged: (int index) {
-                      state.page = index;
-                      blocProvider.add(WelcomeEvent());
-                    },
-                    children: [
-                      _page(
-                        1,
-                        context,
-                        'next',
-                        "First it was fragrance",
-                        "And through desire, a man having separateth himself intermingleth with all knowlege!",
-                        "assets/images/reading.png",
-                      ),
-                      _page(
-                        2,
-                        context,
-                        'next',
-                        "Connect with everyone",
-                        "Then it turned to fire, my worship is my weapon, this is how I win my battles",
-                        "assets/images/boy.png",
-                      ),
-                      _page(
-                        3,
-                        context,
-                        'get started',
-                        "This is how I win",
-                        "And through desire, a man having separateth himself intermingleth with all knowlege!",
-                        "assets/images/man.png",
-                      )
-                    ],
-                  ),
-                  Positioned(
-                    bottom: 50.h, left: 130.h,
-                    child: DotsIndicator(
-                      position: state.page,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      dotsCount: 3,
-                      decorator: DotsDecorator(
-                        color: Colors.grey,
-                        activeColor: Colors.blue,
-                        size: const Size.square(8),
-                        activeSize: const Size(18.0, 8.0),
-                        activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
+          return Container(
+            margin: EdgeInsets.only(top: 34.h),
+            width: 375.w,
+            // height: 400.h,
+            child: Stack(
+              children: [
+                PageView(
+                  controller: _pageController,
+                  onPageChanged: (int index) {
+                    state.page = index;
+                    blocProvider.add(WelcomeEvent());
+                  },
+                  children: [
+                    _page(
+                      1,
+                      context,
+                      'next',
+                      "First it was fragrance",
+                      "And through desire, a man having separateth himself intermingleth with all knowlege!",
+                      "assets/images/reading.png",
+                    ),
+                    _page(
+                      2,
+                      context,
+                      'next',
+                      "Connect with everyone",
+                      "Then it turned to fire, my worship is my weapon, this is how I win my battles",
+                      "assets/images/boy.png",
+                    ),
+                    _page(
+                      3,
+                      context,
+                      'get started',
+                      "This is how I win",
+                      "And through desire, a man having separateth himself intermingleth with all knowlege!",
+                      "assets/images/man.png",
+                    )
+                  ],
+                ),
+                Positioned(
+                  bottom: 50.h, left: 130.h,
+                  child: DotsIndicator(
+                    position: state.page,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    dotsCount: 3,
+                    decorator: DotsDecorator(
+                      color: Colors.grey,
+                      activeColor: Colors.blue,
+                      size: const Size.square(8),
+                      activeSize: const Size(18.0, 8.0),
+                      activeShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },
@@ -131,12 +135,15 @@ class _WelcomeState extends State<Welcome> {
           ),
         ),
         GestureDetector(
-          onTap: () {
+          onTap: () async {
             if (index < 3) {
               _pageController.animateToPage(index,
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeIn);
             } else {
+
+             await Global.storageService.setBool(AppConstant.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
+              // print("storage open value is >>> ${StorageService().getDeviceFirstOpen()}");
               Navigator.of(context).pushReplacementNamed(SignIn.route);
             }
           },
