@@ -57,7 +57,7 @@ class AppPages {
        if (isLoggedIn != null) {
          return MaterialPageRoute(builder: (_) => const ApplicationPage());
        }
-       if (result.first.route == AppRoutes.initial && !deviceFirstOpen) {
+       if (result.first.route == AppRoutes.initial && deviceFirstOpen) {
          return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
        }
        return MaterialPageRoute(builder: (_) => result.first.page, settings: settings);
