@@ -3,6 +3,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common/values/colors.dart';
 
+AppBar buildAppBar2 = AppBar(
+  bottom: PreferredSize(
+    preferredSize: const Size.fromHeight(1.0),
+    child: Container(
+      color: Colors.grey.withOpacity(.5),
+      height: 1.0,
+    ),
+  ),
+  title: const Text(
+    "Sign Up",
+    textAlign: TextAlign.center,
+    textWidthBasis: TextWidthBasis.longestLine,
+    style: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+);
+
 AppBar buildAppBar = AppBar(
   bottom: PreferredSize(
     preferredSize: const Size.fromHeight(1.0),

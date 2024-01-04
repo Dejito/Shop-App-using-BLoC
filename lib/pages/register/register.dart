@@ -25,7 +25,7 @@ class _RegisterState extends State<Register> {
           color: Colors.white,
           child: SafeArea(
             child: Scaffold(
-              appBar: buildAppBar,
+              appBar: buildAppBar2,
               body: SingleChildScrollView(
                 child: Column(
                   children: [

@@ -5,8 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/common/values/colors.dart';
 import 'package:shop_app_using_bloc/pages/home/widget/home_page_widget.dart';
 
-import '../sign_in/widgets/sign_in_widget.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -27,7 +25,8 @@ class _HomePageState extends State<HomePage> {
             homePageText('Hello', color: AppColors.primaryThreeElementText),
             homePageText('Jito tech', top: 5),
             SizedBox(height: 20.h),
-            SearchView()
+            SearchView(),
+            slidersView()
           ],
         ),
       ),

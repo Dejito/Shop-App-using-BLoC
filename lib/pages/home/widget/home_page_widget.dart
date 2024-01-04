@@ -22,11 +22,7 @@ AppBar buildHomePageAppBar() {
                 height: 40.h,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(
-                            "assets/icons/person.png"
-                        )
-                    )
-                ),
+                        image: AssetImage("assets/icons/person.png"))),
               ),
             )
           ],
@@ -36,21 +32,19 @@ AppBar buildHomePageAppBar() {
   );
 }
 
-Widget homePageText(String text, {Color color = AppColors.primaryText, int top = 20}) {
+Widget homePageText(String text,
+    {Color color = AppColors.primaryText, int top = 20}) {
   return Container(
     margin: EdgeInsets.only(top: top.h),
     child: Text(
       text,
-      style: TextStyle(
-          color: color,
-          fontSize: 24.sp,
-          fontWeight: FontWeight.bold
-      ),
+      style:
+          TextStyle(color: color, fontSize: 24.sp, fontWeight: FontWeight.bold),
     ),
   );
 }
 
-Widget SearchView (){
+Widget SearchView() {
   return Container(
     child: Row(
       children: [
@@ -58,10 +52,9 @@ Widget SearchView (){
           height: 40.h,
           width: 280.w,
           decoration: BoxDecoration(
-            color: AppColors.primaryBackground,
-            borderRadius: BorderRadius.circular(15.h),
-            border: Border.all(color: AppColors.primaryFourElementText)
-          ),
+              color: AppColors.primaryBackground,
+              borderRadius: BorderRadius.circular(15.h),
+              border: Border.all(color: AppColors.primaryFourElementText)),
           child: Row(
             children: [
               Container(
@@ -71,13 +64,13 @@ Widget SearchView (){
                 child: Image.asset('assets/icons/search.png'),
               ),
               Container(
-                width: 240.w, height: 40.h,
-                child:
-                TextField(
+                width: 240.w,
+                height: 40.h,
+                child: TextField(
                   // onChanged: (value) => onTextChanged!(value),
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
+                      contentPadding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
                       hintText: "search for your course",
                       hintStyle: TextStyle(
                           fontFamily: "Avenir",
@@ -87,11 +80,11 @@ Widget SearchView (){
                         borderSide: BorderSide(color: Colors.transparent),
                       ),
                       focusedBorder:
-                      const OutlineInputBorder(borderSide: BorderSide.none),
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                       enabledBorder:
-                      const OutlineInputBorder(borderSide: BorderSide.none),
-                      disabledBorder:
-                      const OutlineInputBorder(borderSide: BorderSide.none)),
+                          const OutlineInputBorder(borderSide: BorderSide.none),
+                      disabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide.none)),
                   obscureText: false,
                 ),
               )
@@ -112,6 +105,34 @@ Widget SearchView (){
         )
       ],
     ),
+  );
+}
 
+Widget slidersView() {
+  return Column(
+    children: [
+      Container(
+        margin: EdgeInsets.only(top: 20.h),
+        width: 325.w,
+        height: 160.h,
+        child: PageView(
+          children: [
+            Container(
+              width: 325.w,
+              height: 160.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(
+                  20.h,
+                )),
+                image: const DecorationImage(
+                  image: AssetImage("assets/icons/art.png"),
+                  fit: BoxFit.fill
+                ),
+              ),
+            )
+          ],
+        ),
+      )
+    ],
   );
 }
