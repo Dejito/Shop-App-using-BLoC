@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/pages/home/bloc/homepage_bloc.dart';
 
@@ -118,6 +119,10 @@ Widget slidersView({required BuildContext context, required HomepageState state}
         width: 325.w,
         height: 160.h,
         child: PageView(
+          onPageChanged: (value) {
+            context.read<HomepageBloc>().add(HomePageDots(value));
+            // print(state.index);
+          },
           children: [
             sliderContainer('art'),
             sliderContainer('Image(1)'),
@@ -128,7 +133,7 @@ Widget slidersView({required BuildContext context, required HomepageState state}
       Container(
         child: DotsIndicator(
           dotsCount: 3,
-          position: 1,
+          position: state.index,
           decorator: DotsDecorator(
             color: AppColors.primaryThreeElementText,
             activeColor: AppColors.primaryElement,

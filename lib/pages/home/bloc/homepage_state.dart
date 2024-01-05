@@ -3,7 +3,7 @@ part of 'homepage_bloc.dart';
 // @immutable
 class HomepageState {
 
-  final int index;
+  int index = 0;
 
   HomepageState({this.index = 0});
 
