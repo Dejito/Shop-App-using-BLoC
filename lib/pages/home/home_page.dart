@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
               ),
 
               SliverToBoxAdapter(
-                child: SearchView(),
+                child: searchView(),
               ),
 
               SliverToBoxAdapter(
@@ -62,30 +62,7 @@ class _HomePageState extends State<HomePage> {
                       (context, index) =>
                   GestureDetector(
                     onTap: (){},
-                    child: Container(
-                      padding: EdgeInsets.all(12.w),
-                      child: Column(
-                        children: [
-                          Container(
-                            child: Text(
-                              "Best course for IT",
-                              maxLines: 1,
-                              overflow: TextOverflow.fade,
-                              style: TextStyle(
-                                fontSize: 11.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primaryElementText
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/icons/Image(1).png")
-                        )
-                      ),
-                    ),
+                    child: courseGrid()
                   )
                   ),
                 ),
