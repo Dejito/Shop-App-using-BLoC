@@ -24,8 +24,10 @@ AppBar buildHomePageAppBar() {
                 width: 40.w,
                 height: 40.h,
                 decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/icons/person.png"))),
+                  image: DecorationImage(
+                    image: AssetImage("assets/icons/person.png"),
+                  ),
+                ),
               ),
             )
           ],
@@ -174,26 +176,20 @@ Widget menuView() {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            reusableMenuText("Choose your course"),
-            reusableMenuText("See all",
-                fontSize: 10, color: AppColors.primaryThreeElementText)
+            reusableText("Choose your course"),
+            reusableText("See all",
+                fontSize: 10, color: AppColors.primaryThreeElementText),
           ],
         ),
       ),
       Container(
         margin: EdgeInsets.only(top: 20.w),
-        decoration: BoxDecoration(
-            color: AppColors.primaryElement,
-            borderRadius: BorderRadius.circular(7.w),
-            border: Border.all(
-              color: AppColors.primaryElement,
-            )),
-        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
-        child: reusableMenuText(
-          "All",
-          color: AppColors.primaryElementText,
-          fontWeight: FontWeight.normal,
-          fontSize: 11
+        child: Row(
+          children: [
+            reusableMenuText('All', ),
+            reusableMenuText('Popular', backgroundColor: Colors.transparent, textColor: AppColors.primaryThreeElementText ),
+            reusableMenuText('Newest', backgroundColor: Colors.transparent, textColor: AppColors.primaryThreeElementText),
+          ],
         ),
       )
     ],
@@ -201,6 +197,21 @@ Widget menuView() {
 }
 
 Widget reusableMenuText(String text,
+    {Color backgroundColor = AppColors.primaryElement,
+    Color textColor = AppColors.primaryElementText}) {
+  return Container(
+    margin: EdgeInsets.only(right: 20.w),
+    decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(7.w),
+        border: Border.all(color: backgroundColor)),
+    padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
+    child: reusableText(text,
+        color: textColor, fontWeight: FontWeight.normal, fontSize: 11),
+  );
+}
+
+Widget reusableText(String text,
     {Color color = AppColors.primaryText,
     int fontSize = 16,
     FontWeight fontWeight = FontWeight.bold}) {

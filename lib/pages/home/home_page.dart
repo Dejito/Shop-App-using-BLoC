@@ -24,16 +24,26 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
         child: BlocBuilder<HomepageBloc, HomepageState>(
           builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                homePageText('Hello', color: AppColors.primaryThreeElementText),
-                homePageText('Jito tech', top: 5),
-                SizedBox(height: 20.h),
-                SearchView(),
-                slidersView(context: context, state: state),
-                menuView()
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                    children: [
+                      homePageText('Hello', color: AppColors.primaryThreeElementText),
+                      homePageText('Jito tech', top: 5),
+                      SizedBox(height: 20.h),
+                      SearchView(),
+                      slidersView(context: context, state: state),
+                      menuView()
+                    ],
+                  ),
+                )
               ],
+              // children: [
+
+              // ],
             );
           },
         ),
