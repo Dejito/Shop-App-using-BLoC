@@ -1,11 +1,14 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/common/values/colors.dart';
 import 'package:shop_app_using_bloc/pages/home/widget/home_page_widget.dart';
 
+import 'bloc/homepage_bloc.dart';
+
 class HomePage extends StatefulWidget {
+  static const route = '/homepage';
+
   const HomePage({super.key});
 
   @override
@@ -19,15 +22,22 @@ class _HomePageState extends State<HomePage> {
       appBar: buildHomePageAppBar(),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            homePageText('Hello', color: AppColors.primaryThreeElementText),
-            homePageText('Jito tech', top: 5),
-            SizedBox(height: 20.h),
-            SearchView(),
-            slidersView()
-          ],
+        child: BlocBuilder<HomepageBloc, HomepageState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                homePageText('Hello', color: AppColors.primaryThreeElementText),
+                homePageText('Jito tech', top: 5),
+                SizedBox(height: 20.h),
+                SearchView(),
+                slidersView(
+                  context: context,
+                  state: state,
+                )
+              ],
+            );
+          },
         ),
       ),
     );

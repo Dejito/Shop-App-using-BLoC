@@ -1,5 +1,7 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/pages/home/bloc/homepage_bloc.dart';
 
 import '../../../common/values/colors.dart';
 
@@ -108,7 +110,7 @@ Widget SearchView() {
   );
 }
 
-Widget slidersView() {
+Widget slidersView({required BuildContext context, required HomepageState state}) {
   return Column(
     children: [
       Container(
@@ -117,22 +119,43 @@ Widget slidersView() {
         height: 160.h,
         child: PageView(
           children: [
-            Container(
-              width: 325.w,
-              height: 160.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(
-                  20.h,
-                )),
-                image: const DecorationImage(
-                  image: AssetImage("assets/icons/art.png"),
-                  fit: BoxFit.fill
-                ),
-              ),
-            )
+            sliderContainer('art'),
+            sliderContainer('Image(1)'),
+            sliderContainer('Image(2)'),
           ],
+        ),
+      ),
+      Container(
+        child: DotsIndicator(
+          dotsCount: 3,
+          position: 1,
+          decorator: DotsDecorator(
+            color: AppColors.primaryThreeElementText,
+            activeColor: AppColors.primaryElement,
+            size: const Size.square(5.0),
+            activeSize: const Size(17, 5),
+            activeShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0)
+            )
+
+
+          ),
         ),
       )
     ],
+  );
+}
+
+Widget sliderContainer(String imageName) {
+  return Container(
+    width: 325.w,
+    height: 160.h,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(
+        20.h,
+      )),
+      image: DecorationImage(
+          image: AssetImage("assets/icons/$imageName.png"), fit: BoxFit.fill),
+    ),
   );
 }

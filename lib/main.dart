@@ -9,7 +9,7 @@ Future<void> main() async {
   try {
     await Global.init();
     if (kDebugMode) {
-      print("firebase init'd >>>>>>");
+      // print("firebase init'd >>>>>>");
     }
     runApp(const MyApp());
   } catch (e) {
