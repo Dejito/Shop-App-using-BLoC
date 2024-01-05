@@ -111,7 +111,8 @@ Widget SearchView() {
   );
 }
 
-Widget slidersView({required BuildContext context, required HomepageState state}) {
+Widget slidersView(
+    {required BuildContext context, required HomepageState state}) {
   return Column(
     children: [
       Container(
@@ -131,20 +132,17 @@ Widget slidersView({required BuildContext context, required HomepageState state}
         ),
       ),
       Container(
+        margin: EdgeInsets.only(top: 3.h),
         child: DotsIndicator(
           dotsCount: 3,
           position: state.index,
           decorator: DotsDecorator(
-            color: AppColors.primaryThreeElementText,
-            activeColor: AppColors.primaryElement,
-            size: const Size.square(5.0),
-            activeSize: const Size(17, 5),
-            activeShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0)
-            )
-
-
-          ),
+              color: AppColors.primaryThreeElementText,
+              activeColor: AppColors.primaryElement,
+              size: const Size.square(5.0),
+              activeSize: const Size(17, 5),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0))),
         ),
       )
     ],
@@ -161,6 +159,56 @@ Widget sliderContainer(String imageName) {
       )),
       image: DecorationImage(
           image: AssetImage("assets/icons/$imageName.png"), fit: BoxFit.fill),
+    ),
+  );
+}
+
+Widget menuView() {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        width: 325.w,
+        margin: EdgeInsets.only(top: 15.h),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            reusableMenuText("Choose your course"),
+            reusableMenuText("See all",
+                fontSize: 10, color: AppColors.primaryThreeElementText)
+          ],
+        ),
+      ),
+      Container(
+        margin: EdgeInsets.only(top: 20.w),
+        decoration: BoxDecoration(
+            color: AppColors.primaryElement,
+            borderRadius: BorderRadius.circular(7.w),
+            border: Border.all(
+              color: AppColors.primaryElement,
+            )),
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
+        child: reusableMenuText(
+          "All",
+          color: AppColors.primaryElementText,
+          fontWeight: FontWeight.normal,
+          fontSize: 11
+        ),
+      )
+    ],
+  );
+}
+
+Widget reusableMenuText(String text,
+    {Color color = AppColors.primaryText,
+    int fontSize = 16,
+    FontWeight fontWeight = FontWeight.bold}) {
+  return Container(
+    child: Text(
+      text,
+      style: TextStyle(
+          color: color, fontWeight: fontWeight, fontSize: fontSize.sp),
     ),
   );
 }

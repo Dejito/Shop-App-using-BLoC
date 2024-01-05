@@ -31,10 +31,8 @@ class _HomePageState extends State<HomePage> {
                 homePageText('Jito tech', top: 5),
                 SizedBox(height: 20.h),
                 SearchView(),
-                slidersView(
-                  context: context,
-                  state: state,
-                )
+                slidersView(context: context, state: state),
+                menuView()
               ],
             );
           },
