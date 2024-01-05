@@ -24,27 +24,80 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
         child: BlocBuilder<HomepageBloc, HomepageState>(
           builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            return CustomScrollView(slivers: [
+              SliverToBoxAdapter(
+                child: homePageText('Hello',
+                    color: AppColors.primaryThreeElementText),
+              ),
+              SliverToBoxAdapter(
+                child: homePageText('Jito tech', top: 5),
+              ),
 
-                    children: [
-                      homePageText('Hello', color: AppColors.primaryThreeElementText),
-                      homePageText('Jito tech', top: 5),
-                      SizedBox(height: 20.h),
-                      SearchView(),
-                      slidersView(context: context, state: state),
-                      menuView()
-                    ],
+              SliverPadding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+              ),
+
+              SliverToBoxAdapter(
+                child: SearchView(),
+              ),
+
+              SliverToBoxAdapter(
+                child: slidersView(context: context, state: state),
+              ),
+
+              SliverToBoxAdapter(
+                child: menuView(),
+              ),
+
+              SliverPadding(
+                padding: EdgeInsets.symmetric(vertical: 18.h),
+                sliver: SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 15,
+                      childAspectRatio: 1.6),
+                  delegate: SliverChildBuilderDelegate(
+                      childCount: 4,
+                      (context, index) =>
+                  GestureDetector(
+                    onTap: (){},
+                    child: Container(
+                      padding: EdgeInsets.all(12.w),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Text(
+                              "Best course for IT",
+                              maxLines: 1,
+                              overflow: TextOverflow.fade,
+                              style: TextStyle(
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryElementText
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/icons/Image(1).png")
+                        )
+                      ),
+                    ),
+                  )
                   ),
-                )
-              ],
-              // children: [
-
+                ),
+              )
               // ],
-            );
+              // ),
+            ]
+
+                // children: [
+
+                // ],
+                );
           },
         ),
       ),
