@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_app_using_bloc/common/routes/names.dart';
 import 'package:shop_app_using_bloc/common/values/colors.dart';
+import 'package:shop_app_using_bloc/pages/profile/settings/settings_page.dart';
 
 Widget buildAppBar() {
   return AppBar(
@@ -30,20 +31,23 @@ Widget buildAppBar() {
   );
 }
 
-Widget profileIconAndEditPicture() {
-  return Container(
-    alignment: Alignment.bottomRight,
-    width: 80.w,
-    height: 80.h,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20.w),
-      image:
-          const DecorationImage(image: AssetImage('assets/icons/headpic.png')),
-    ),
-    child: Image(
-      width: 25.w,
-      height: 25.h,
-      image: AssetImage('assets/icons/edit_3.png'),
+Widget profileIconAndEditPicture(BuildContext context) {
+  return GestureDetector(
+    onTap: () => Navigator.of(context).pushNamed(AppRoutes.application),
+    child: Container(
+      alignment: Alignment.bottomRight,
+      width: 80.w,
+      height: 80.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.w),
+        image:
+            const DecorationImage(image: AssetImage('assets/icons/headpic.png')),
+      ),
+      child: Image(
+        width: 25.w,
+        height: 25.h,
+        image: const AssetImage('assets/icons/edit_3.png'),
+      ),
     ),
   );
 }
@@ -56,11 +60,19 @@ var imagesInfo = <String, String>{
   'Reminders': 'cube.png'
 };
 
-Widget buildListView() {
+Widget buildListView(BuildContext context) {
   return Column(
     children: [
       ...List.generate(imagesInfo.length, (index) =>
       GestureDetector(
+        onTap: () {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => SettingsPage()),
+          // );
+          Navigator.of(context).pushNamed(AppRoutes.settingsPage);
+          // print('tried to nav');
+        },
         child: Container(
           margin: EdgeInsets.only(left: 25.w, top: 20.h),
           child: Row(

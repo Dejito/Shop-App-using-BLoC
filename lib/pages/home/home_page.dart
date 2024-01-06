@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 child: homePageText('Jito tech', top: 5),
               ),
 
-              SliverPadding(
+              const SliverPadding(
                 padding: EdgeInsets.symmetric(vertical: 20),
               ),
 

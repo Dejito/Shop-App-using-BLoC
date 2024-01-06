@@ -18,12 +18,12 @@ class _ProfilePageState extends State<ProfilePage> {
         title: buildAppBar(),
       ),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              profileIconAndEditPicture(),
-              buildListView(),
+              profileIconAndEditPicture(context),
+              buildListView(context),
             ],
           ),
         ),

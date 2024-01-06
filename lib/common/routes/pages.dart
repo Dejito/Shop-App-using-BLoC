@@ -9,6 +9,8 @@ import 'package:shop_app_using_bloc/pages/application/application_page.dart';
 import 'package:shop_app_using_bloc/pages/application/bloc/app_bloc.dart';
 import 'package:shop_app_using_bloc/pages/home/bloc/homepage_bloc.dart';
 import 'package:shop_app_using_bloc/pages/home/home_page.dart';
+import 'package:shop_app_using_bloc/pages/profile/settings/bloc/settings_bloc.dart';
+import 'package:shop_app_using_bloc/pages/profile/settings/settings_page.dart';
 import 'package:shop_app_using_bloc/pages/register/bloc/register_bloc.dart';
 import 'package:shop_app_using_bloc/pages/register/register.dart';
 import 'package:shop_app_using_bloc/pages/sign_in/bloc/sign_in_bloc.dart';
@@ -44,6 +46,11 @@ class AppPages {
        page: const HomePage(),
        bloc: BlocProvider(create: (context) => HomepageBloc(),),
      ),
+     PageEntity(
+       route: AppRoutes.settingsPage,
+       page: const SettingsPage(),
+       bloc: BlocProvider(create: (context) => SettingsBloc(),),
+     ),
    ];
  }
 
@@ -61,12 +68,14 @@ class AppPages {
      if (result.isNotEmpty) {
        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
        String? isLoggedIn = Global.storageService.getIsLoggedIn();
-       if (isLoggedIn != null) {
-         return MaterialPageRoute(builder: (_) => const ApplicationPage());
-       }
-       if (result.first.route == AppRoutes.initial && deviceFirstOpen) {
-         return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
-       }
+       print("device first ope  is $deviceFirstOpen");
+       print('is Logged in $isLoggedIn');
+       // if (isLoggedIn == null) {
+       //   return MaterialPageRoute(builder: (_) => const ApplicationPage());
+       // }
+       // if (result.first.route == AppRoutes.initial && !deviceFirstOpen) {
+       //   return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
+       // }
        return MaterialPageRoute(builder: (_) => result.first.page, settings: settings);
      }
    }
