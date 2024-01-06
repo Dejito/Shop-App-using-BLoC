@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shop_app_using_bloc/pages/home/bloc/homepage_bloc.dart';
 
 import '../../../common/values/colors.dart';
+import '../../../common/widget/base_text_widget.dart';
 
 AppBar buildHomePageAppBar() {
   return AppBar(
@@ -209,16 +210,6 @@ Widget reusableMenuText(String text,
   );
 }
 
-Widget reusableText(String text,
-    {Color color = AppColors.primaryText,
-    int fontSize = 16,
-    FontWeight fontWeight = FontWeight.bold}) {
-  return Text(
-    text,
-    style: TextStyle(
-        color: color, fontWeight: fontWeight, fontSize: fontSize.sp),
-  );
-}
 
 Widget courseGrid() {
   return Container(
