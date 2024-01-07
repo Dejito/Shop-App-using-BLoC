@@ -178,6 +178,7 @@ Widget menuView() {
             reusableText("Choose your course"),
             reusableText("See all",
                 fontSize: 10, color: AppColors.primaryThreeElementText),
+
           ],
         ),
       ),
