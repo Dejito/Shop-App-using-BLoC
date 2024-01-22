@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shop_app_using_bloc/common/apis/user_api.dart';
+import 'package:shop_app_using_bloc/common/entities/entities.dart';
 import 'package:shop_app_using_bloc/common/values/constant.dart';
 import 'package:shop_app_using_bloc/common/widget/flutter_toast.dart';
 import 'package:shop_app_using_bloc/pages/application/application_page.dart';
@@ -40,6 +44,21 @@ class SignInController {
           }
           var user = credentials.user;
           if (user != null) {
+            String? id = user.uid;
+            String? photoUrl = user.photoURL;
+            String? email = user.email;
+            String? displayName = user.displayName;
+
+            LoginRequestEntity loginRequestEntity = LoginRequestEntity(
+              // type: 1,
+              // avatar: photoUrl,
+              email: email,
+              name: displayName,
+              // open_id: id
+            );
+            asyncPostAllData(loginRequestEntity);
+
+
             Global.storageService.setString(AppConstant.STORAGE_USER_TOKEN_KEY, '1234567');
             Navigator.pushReplacementNamed(context, ApplicationPage.route);
           }
@@ -61,4 +80,15 @@ class SignInController {
       }
     } catch (e) {}
   }
+
+  void asyncPostAllData(LoginRequestEntity loginRequestEntity){
+    EasyLoading.show(
+      indicator: const CircularProgressIndicator(),
+      maskType: EasyLoadingMaskType.clear,
+      dismissOnTap: true
+    );
+    var result = UserAPI.login(params: loginRequestEntity);
+    print('resulta is >>>>$result');
+  }
+
 }
